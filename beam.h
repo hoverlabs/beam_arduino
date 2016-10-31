@@ -1,17 +1,17 @@
 /*
-===========================================================================    
-
-  This is the library for Beam. 
-  
-  Beam is a beautiful LED matrix — features 120 LEDs that displays scrolling text, animations, or custom lighting effects. 
-  Beam can be purchased here: http://www.hoverlabs.co
-  
-  Written by Emran Mahbub and Jonathan Li for Hover Labs.  
-  BSD license, all text above must be included in any redistribution
-  
 ===========================================================================
-*/ 
-    
+
+  This is the library for Beam.
+
+  Beam is a beautiful LED matrix — features 120 LEDs that displays scrolling text, animations, or custom lighting effects.
+  Beam can be purchased here: http://www.hoverlabs.co
+
+  Written by Emran Mahbub and Jonathan Li for Hover Labs.
+  BSD license, all text above must be included in any redistribution
+
+===========================================================================
+*/
+
 #ifndef _BEAM
 #define _BEAM
 
@@ -68,25 +68,29 @@ class Beam {
     void setSpeed(uint8_t speed);
     void setLoops (uint8_t loops);
     void setMode (uint8_t mode);
+    void loadFrameFromRAM(int beam, uint8_t frameNum, uint8_t *pFrameData);
     volatile int beamNumber;
     int checkStatus();
     int status();
+
 
   private:
     uint16_t cs[12], segmentmask[8];
     uint8_t cscolumn[25];
     uint8_t _gblMode, _currBeam, _syncMode, _lastFrameWrite, _scrollMode, _scrollDir, _fadeMode, _frameDelay, _beamMode, _numLoops;
     int _rst, _irq, _beamCount, activeBeams;
-    
+
     void startNextBeam();
     void initializeBeam(uint8_t b);
     void setPrintDefaults(uint8_t mode, uint8_t startFrame, uint8_t numFrames, uint8_t numLoops, uint8_t frameDelay, uint8_t scrollDir, uint8_t fadeMode);
     void writeFrame(uint8_t addr, uint8_t f);
-    void convertFrame(uint8_t * currentFrame);
+    //void convertFrame(uint8_t * currentFrame);
+    void convertFrame(uint16_t currentFrame);
     unsigned int setSyncTimer();
     void sendWriteCmd(uint8_t addr, uint8_t ramsection, uint8_t subreg, uint8_t subregdata);
     uint8_t sendReadCmd(uint8_t addr, uint8_t ramsection, uint8_t subreg);
     uint8_t i2cwrite(uint8_t address, uint8_t cmdbyte, uint8_t databyte);
+    void convertFrameFromRAM(uint8_t *pFrameData);
 };
 
 

@@ -1,18 +1,23 @@
+#ifndef __CHARMAP__
+#define __CHARMAP__
+
+#include <avr/pgmspace.h>
+
 /*
-===========================================================================    
-
-  This is the library for Beam. 
-  
-  Beam is a beautiful LED matrix — features 120 LEDs that displays scrolling text, animations, or custom lighting effects. 
-  Beam can be purchased here: http://www.hoverlabs.co
-  
-  Written by Emran Mahbub and Jonathan Li for Hover Labs.  
-  BSD license, all text above must be included in any redistribution
-  
 ===========================================================================
-*/ 
 
-uint8_t charactermap[66][7] = {
+  This is the library for Beam.
+
+  Beam is a beautiful LED matrix — features 120 LEDs that displays scrolling text, animations, or custom lighting effects.
+  Beam can be purchased here: http://www.hoverlabs.co
+
+  Written by Emran Mahbub and Jonathan Li for Hover Labs.
+  BSD license, all text above must be included in any redistribution
+
+===========================================================================
+*/
+
+const uint8_t charactermap[66][7] PROGMEM = {
 {0x00,0x00,0xFF,0xFF,0xFF,0xFF},      // SPACE
 {0x17,0x0,0xFF,0xFF,0xFF,0xFF,0xFF},      // !
 {0x3,0x0,0x3,0x0,0xFF,0x0,0xFF},       // "
@@ -81,3 +86,5 @@ uint8_t charactermap[66][7] = {
 
 
 };
+
+#endif
